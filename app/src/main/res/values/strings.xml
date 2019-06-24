@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">gupiao</string>
+    <string name="hotsong">热歌榜</string>
+    <string name="oldsong">经典老歌榜</string>
+    <string name="netsong">网络红歌榜</string>
+    <string name="btn_last">上一首</string>
+    <string name="btn_start">开始</string>
+    <string name="btn_stop">暂停</string>
+    <string name="btn_next">下一首</string>
+    <string name="mymusic">我的音乐</string>
 </resources>

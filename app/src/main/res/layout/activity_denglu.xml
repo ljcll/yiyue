@@ -9,6 +9,15 @@
 
 
     <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="欢迎使用music"
+        android:layout_gravity="center"
+        android:textColor="#000"
+        android:textSize="20dp" />
+    <TextView
         android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +33,14 @@
         android:layout_marginLeft="5dp"
         android:background="@null"
         android:padding="10dp" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#aa000000" />
+
 
 <TextView
     android:id="@+id/tv_password"
@@ -42,6 +59,13 @@
     android:background="@null"
     android:inputType="textPassword"
     android:padding="10dp" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#aa000000" />
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
@@ -76,6 +100,12 @@
         android:layout_below="@+id/password"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </LinearLayout>
 

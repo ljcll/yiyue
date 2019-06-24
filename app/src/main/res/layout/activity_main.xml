@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:background="@drawable/music">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/hotsong"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/hotsong"
+        android:textSize="35sp"
+        android:onClick="onClick"
+        android:background="#008b3b46"
+        android:textColor="#873945"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/oldsong"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/oldsong"
+        android:textSize="35sp"
+        android:onClick="onClick"
+        android:background="#008b3b46"
+        android:textColor="#873945"/>
+
+    <Button
+    android:id="@+id/netsong"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="50dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="50dp"
+    android:text="@string/netsong"
+    android:onClick="onClick"
+    android:textSize="35sp"
+    android:background="#008b3b46"
+    android:textColor="#873945"
+    />
+
+    <Button
+        android:id="@+id/mymusic"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:background="#008b3b46"
+        android:onClick="onClick"
+        android:text="@string/mymusic"
+        android:textColor="#873945"
+        android:textSize="35sp" />
+
+</LinearLayout>

@@ -1,13 +1,23 @@
 package cn.edu.swufe.gupiao;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -24,114 +34,82 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity implements Runnable{
+    public class MainActivity extends AppCompatActivity {
     private final String TAG = "Rate";
     Handler handler;
+    //private ArrayAdapter<HashMap<String,String,String>;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Thread t = new Thread(this);
-        t.start();;
-
 
     }
+        public void onClick(View btn) {
+            if(btn.getId()==R.id.hotsong){
+                Intent list= new Intent(this,hotsong.class);
+                startActivity(list);
+            }else if(btn.getId()==R.id.netsong){
+                Intent list= new Intent(this,netsong.class);
+                startActivity(list);
+            }else if(btn.getId()==R.id.oldsong){
+                Intent list= new Intent(this,oldsong.class);
+                startActivity(list);
+            }else{
+                Intent list= new Intent(this,musicplayer.class);
+                startActivity(list);
+            }
+        }
+        @Override
 
-    public void run() {
+        public boolean onCreateOptionsMenu(Menu menu) {
+            //getMenuInflater()获得MenuIflater对象，inflate()方法给当前活动创建菜单
+            getMenuInflater().inflate(R.menu.musicmenu,menu);
+            //true 代表允许创建的菜单显示出来
+            return  true;
+        }
 
-        Bundle bundle = new Bundle();
-        getresult(bundle);
-        Message msg1 = handler.obtainMessage();
-        msg1.what = 4;
-        msg1.obj  = bundle;
-        handler.sendMessage(msg1);
-    }
+        public boolean onOptionsItemSelected(MenuItem item){
 
-    private void getresult(Bundle bundle) {
-        Document doc = null;
-        try {
-            doc = Jsoup.connect("http://music.taihe.com/top/new/?pst=shouyeTop").get();
-            //doc = Jsoup.parse(html);
-            Log.i(TAG,"run:"+doc.title());
-            Elements songTitles = doc.select("span.song-title");
-            Elements artists = doc.select("span.author_list");
-            ArrayList<SearchResult> searchResults = new ArrayList<SearchResult>();
+            switch (item.getItemId()) {
 
-            for (int i = 0; i < songTitles.size(); i++) {
-                SearchResult searchResult = new SearchResult();
-                Elements urls = songTitles.get(i).getElementsByTag("a");
-                searchResult.setUrl(urls.get(0).attr("href"));
-                searchResult.setMusicName(urls.get(0).text());
+                case R.id.hot:
+                    Intent list= new Intent(this,hotsong.class);
+                    startActivity(list);
+                    break;
 
-                Elements artistElements = artists.get(i).getElementsByTag("a");
-                searchResult.setArtist(artistElements.get(0).text());
-                searchResult.setAlbum("最新推荐");
-                searchResults.add(searchResult);
+                case R.id.net:
+                    Intent list1= new Intent(this,netsong.class);
+                    startActivity(list1);
+                    break;
+
+                case R.id.old:
+                    Intent list2= new Intent(this,oldsong.class);
+                    startActivity(list2);
+                    break;
+
+                case R.id.exit:
+                    Intent list3= new Intent(this,denglu.class);
+                    startActivity(list3);
+                    break;
+
+                case R.id.my:
+                    Intent list4= new Intent(this,musicplayer.class);
+                    startActivity(list4);
+                    break;
+
+                default:
 
             }
 
+            return true;
 
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public class SearchResult implements Serializable {
-        private static final long serialVersionUID = 0X00000001l;
-        private String musicName;
-        private String url;
-        private String artist;
-        private String album;
-
-        public String getArtist() {
-            return artist;
-        }
-
-        public void setArtist(String artist) {
-            this.artist = artist;
-        }
-
-        public String getMusicName() {
-            return musicName;
-        }
-
-        public void setMusicName(String musicName) {
-            this.musicName = musicName;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getAlbum() {
-            return album;
-        }
-
-        public void setAlbum(String album) {
-            this.album = album;
-        }
-    }
-
-    private String inputStream2String(InputStream inputStream) throws IOException {
-        final int bufferSize = 1024;
-        final char[] buffer = new char[bufferSize];
-        final StringBuilder out = new StringBuilder();
-        Reader in = new InputStreamReader(inputStream, "gb2312");
-        while (true) {
-            int rsz = in.read(buffer, 0, buffer.length);
-            if (rsz < 0)
-                break;
-            out.append(buffer, 0, rsz);
-        }
-        return out.toString();
-    }
-}

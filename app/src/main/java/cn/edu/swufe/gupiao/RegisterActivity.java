@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.reg_btn_login:
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, denglu.class);
                     startActivity(intent);
                     break;
 
